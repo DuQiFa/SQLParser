@@ -16,6 +16,8 @@ import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 
+import sqlparser.*;
+
 /**
  * A program entry for the SQLtable parser for results from Hieranoid 2
  * 
@@ -147,7 +149,7 @@ public class SQLParser {
 					pairWriter.close();
 			} else {
 				System.out
-						.println("SQLTableParser 1.0 - Parser converting concatenaded together sqltable files to list of tab separate pairs of orthologs.");
+						.println("SQLTableParser 0.1 - Parser converting sqltable files to list of tab separate pairs of orthologs.");
 				System.out
 						.println("Corresponding author - Mateusz Kaduk <mateusz.kaduk@scilifelab.se>\n");
 
