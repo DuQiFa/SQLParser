@@ -54,13 +54,14 @@ public class PairWriter {
 									&& fset.contains(jorganism)) {
 								String tmp = (group.get(i) + "\t" + group
 										.get(j));
-								fout.println(tmp);
+								if(!tmp.isEmpty())
+									fout.println(tmp);
 							}
 						}
 					} else {
-						logger.warn("Proteomes map does not contain of of proteins: "
+						logger.warn("Proteomes map does not contain a pair of proteins: "
 								+ istr + "," + jstr);
-						System.exit(-1);
+						//System.exit(-1);
 					}
 				}
 			}
