@@ -32,7 +32,7 @@ public class SequenceReader {
 				
 				// Strip file extension
 				String fname = fasta.getName();
-				String name = fname.replaceAll(".fa", "");
+				String name = fname.replaceFirst("[.][^.]+$", "");
 				
 				// Put into map
 				map.put(key,name);
