@@ -61,7 +61,7 @@ public class PairWriter {
 					} else {
 						logger.warn("Proteomes map does not contain a pair of proteins: "
 								+ istr + "," + jstr);
-						//System.exit(-1);
+						System.exit(-1);
 					}
 				}
 			}
