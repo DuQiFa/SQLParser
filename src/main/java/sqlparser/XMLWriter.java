@@ -2,6 +2,7 @@ package sqlparser;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import sbc.orthoxml.Species;
 
 @SuppressWarnings("restriction")
 public class XMLWriter {
-	private static final Logger logger = LogManager.getLogger(XMLWriter.class);
+		private static final Logger logger = LogManager.getLogger(XMLWriter.class);
 		private ArrayList<ArrayList<String>> orthoGroups;
 		private HashMap<String, String> map;
 		private HashSet<String> fset;
@@ -46,6 +47,9 @@ public class XMLWriter {
 		 * @throws XMLStreamException 
 		 */
 		public void writeXML(OrthoXMLWriter orthoXMLWriter) throws FileNotFoundException, XMLStreamException {
+			HashMap<String,Database> dbmap = new HashMap<String, Database>();
+			String timestamp = new java.text.SimpleDateFormat("MM-dd-yyyy").format(new Date());
+			
 			Iterator<ArrayList<String>> groupIterator = orthoGroups.iterator();
 			for(int g = 0 ; groupIterator.hasNext(); g++ ) {
 				ArrayList<String> group = groupIterator.next();
@@ -73,7 +77,13 @@ public class XMLWriter {
 										Species y = new Species(j, jorganism);
 										
 										// Create database
-										Database db = new Database("ProteinDB", "DB"); // We don't know what database input comes from so set to fixed strings
+										Database db = null;
+										if(dbmap.containsKey(iorganism+jorganism)) {
+											db = dbmap.get(iorganism+jorganism);
+										} else {
+											db = new Database("Proteomes", timestamp);
+											dbmap.put(iorganism+jorganism, db);
+										}
 										
 										// Create gene objects
 										Gene genex = new Gene(x, db);

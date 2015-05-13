@@ -39,7 +39,7 @@ public class ListWriter {
 					cgroup.add(protein);
 				}
 			}
-			if(!cgroup.isEmpty())
+			if(!cgroup.isEmpty() && cgroup.size() > 1)
 				lout.println(cgroup);
 		}
 	}

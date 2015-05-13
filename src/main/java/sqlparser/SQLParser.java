@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.forester.phylogeny.PhylogenyNode;
 
 import sbc.orthoxml.io.OrthoXMLWriter;
@@ -29,7 +31,8 @@ import joptsimple.OptionSpec;
  */
 @SuppressWarnings("restriction")
 public class SQLParser {
-	//private static final Logger logger = LogManager.getLogger(SQLParser.class);
+	private static final Logger logger = LogManager.getLogger(SQLParser.class);
+	
 	public static PrintWriter openWriter(File outfile) throws FileNotFoundException {
 		if(outfile.exists()) {
 			outfile.delete();
@@ -101,9 +104,13 @@ public class SQLParser {
 				pbank.loadProteomes();
 				
 				// For every combination of leafs
+				Integer current = 0;
 				for (int i = 0; i < leafList.size(); i++) {
 					for (int j = i + 1; j < leafList.size(); j++) {
 					
+						// Count pairs
+						current++;
+						
 						// Get pair of organisms
 						PhylogenyNode anode = leafList.get(i);
 						PhylogenyNode bnode = leafList.get(j);
@@ -141,6 +148,9 @@ public class SQLParser {
 						HashSet<String> pset = new HashSet<String>();
 						pset.add(anode.getName());
 						pset.add(bnode.getName());
+						
+						// Log organism pair
+						logger.info("Parsing for " + pset + " "+current+"/"+(leafList.size()*(leafList.size()-1))/2);
 						
 						// Print groups to file
 						if (options.has(listFile)) {
