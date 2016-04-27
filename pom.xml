@@ -43,13 +43,6 @@
 			<artifactId>jopt-simple</artifactId>
 			<version>4.8</version>
 		</dependency>
-		<dependency>
-			<groupId>org.group.project</groupId>
-			<artifactId>Project</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/orthoxml-0.1b.jar</systemPath>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
