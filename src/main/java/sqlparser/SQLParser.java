@@ -58,10 +58,10 @@ public class SQLParser {
 						"A tree to follow when unfoloding different pairs of organisms.")
 				.withRequiredArg().ofType(File.class);
 
-		OptionSpec<File> listFile = parser
-				.acceptsAll(Arrays.asList("l", "list"),
-						"Optional output file for resolved ortholog groups.")
-				.withRequiredArg().ofType(File.class);
+//		OptionSpec<File> listFile = parser
+//				.acceptsAll(Arrays.asList("l", "list"),
+//						"Optional output file for resolved ortholog groups.")
+//				.withRequiredArg().ofType(File.class);
 
 		OptionSpec<File> pairsFile = parser
 				.acceptsAll(Arrays.asList("o", "output"),
@@ -79,13 +79,13 @@ public class SQLParser {
 
 			// Open files for sequential writes
 			PrintWriter pairWriter = null;
-			PrintWriter listWriter = null;
+//			PrintWriter listWriter = null;
 		//	OrthoXMLWriter orthoXMLWriter = null;
 			
 			if(options.has(pairsFile))
 				pairWriter = openWriter(options.valueOf(pairsFile));
-			if(options.has(listFile))
-				listWriter = openWriter(options.valueOf(listFile));
+//			if(options.has(listFile))
+//				listWriter = openWriter(options.valueOf(listFile));
 //			if(options.has(xmlFile)) {
 //				String timestamp = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss").format(new Date());
 //				orthoXMLWriter = new OrthoXMLWriter(options.valueOf(xmlFile), "Hieranoid2", timestamp);
@@ -151,11 +151,11 @@ public class SQLParser {
 						// Log organism pair
 						logger.info("Parsing for " + pset + " "+current+"/"+(leafList.size()*(leafList.size()-1))/2);
 						
-						// Print groups to file
-						if (options.has(listFile)) {
-							ListWriter lwriter = new ListWriter(pairGroups, pbank.getSpecies(),pset);
-							lwriter.writeLists(listWriter);
-						}
+//						// Print groups to file
+//						if (options.has(listFile)) {
+//							ListWriter lwriter = new ListWriter(pairGroups, pbank.getSpecies(),pset);
+//							lwriter.writeLists(listWriter);
+//						}
 
 						// Print pairs to file
 						if (options.has(pairsFile)) {				
@@ -174,8 +174,8 @@ public class SQLParser {
 					}
 				}
 				// Close output files
-				if(options.has(listFile))
-					listWriter.close();
+//				if(options.has(listFile))
+//					listWriter.close();
 				if(options.has(pairsFile))
 					pairWriter.close();
 //				if(options.has(xmlFile))
